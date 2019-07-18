@@ -37,7 +37,9 @@ brew services start mongodb
 Or use a Docker-compose.yml
 
 ```bash
-docker-compose -f Docker-compose-mongo.yml up -d
+# fist create the image afarcloud/api:1.0
+docker build --no-cache --tag afarcloud/api:1.0 .
+docker-compose up -d
 ```
 
 #### Config the application
@@ -56,10 +58,12 @@ on Postman and explore the APIs.
 For work with MongoDB you can use [Robo 3T](https://robomongo.org/download)
 
 ##### Build the docker api container
-
+```
+    # first create the image afarcloud/api
     docker build --no-cache --tag afarcloud/api:1.0 .
+```
 
-To be runing the container:
+To be runing the container wihtout mongo:
 
     docker run --name=afarcloud-api -it --rm -p 5000:5000 afarcloud/api:1.0
 
