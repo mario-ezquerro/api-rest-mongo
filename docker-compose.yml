@@ -3,7 +3,7 @@ services:
   mongo-db:
     image: 'mongo:3.6'
     hostname: mongo-db
-    container_name: db-mongo
+    container_name: mongo-db
     expose:
       - '27017'
     ports:
@@ -22,12 +22,18 @@ services:
       - mongo-db
     environment:
      - ENV=development
-     - HOST=0.0.0.0
-     - PORT=5000
+     - HOST_API=0.0.0.0
+     - PORT_API=5000
     ports:
-     - '5000:5000'
+     - '${PORT_API}:${PORT_API}'
     networks:
       - default
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://${HOST_API}:${PORT_API}"]
+        interval: 1m30s
+        timeout: 10s
+        retries: 3
+        #start_period: 40s
 
 volumes:
   mongo-db: 

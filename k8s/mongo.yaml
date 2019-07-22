@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-db
+  labels:
+    run: mongo-db
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+    protocol: TCP
+  selector:
+    run: mongo-db
+status:
+  loadBalancer: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata: 
+  name: mongo-db
+spec:
+  template:
+    metadata:
+      labels:
+        run: mongo-db
+    spec:
+      containers:
+      - name: mongo-db
+        image: mongo:3.6
+        ports:
+        - containerPort: 27017
+      volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: /data
+      volumes:
+        - name: mongo-persistent-storage
+          gcePersistentDisk:
+            pdName: mongo-disk
+            fsType: ext4
+status: {}
