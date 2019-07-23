@@ -33,7 +33,7 @@ spec:
           value: 0.0.0.0
         - name: PORT
           value: "5000"
-        image: afarcloud/api:1.0
+        image: afarcloud/api-mongo:1.0
         name: api-afarclolud-mongo
         ports:
         - containerPort: 5000
