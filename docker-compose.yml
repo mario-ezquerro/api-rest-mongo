@@ -14,10 +14,10 @@ services:
     volumes:
       - './mongo-db:/data'
 
-  api-afarclolud:
-    image: afarcloud/api:1.0
-    hostname: api-afarcloud
-    container_name: api-afarcloud
+  api-afarclolud-mongo:
+    image: afarcloud/api-mongo:1.0
+    hostname: api-afarcloud-mongo
+    container_name: api-afarcloud-mongo
     depends_on:
       - mongo-db
     environment:
