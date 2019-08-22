@@ -1,5 +1,5 @@
 From python:3.6
-#From centos
+
 LABEL maintainer "mario.ezquerro@bosonit.com"
 LABEL description "This is a docker to API to maker CRUD operations with mongo."
 LABEL version "1.0"
